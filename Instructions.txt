@@ -19,6 +19,8 @@ Environment Setup:
 5. Run Eclipse
 	- Import existing project
 	- Import WebApplication
+	- Edit DatabaseConnection.java as follows
+		- Edit username and password to your mysql user
 	- Build Project
 	- Then Run as run on Server (Select your Tomcat 7 installation)
 	
