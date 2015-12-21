@@ -1,7 +1,7 @@
 # PortFolio
 Sample Web Application<br/>
 
-<b>Improvements:</b><br/>
+<b>Future Improvements:</b><br/>
 1. Show historical transactions for each portfolio on UI (currently entries in database)<br/>
 2. Improve UI (add css) <br/>
 3. Add portfolio names <br/>
