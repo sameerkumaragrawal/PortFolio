@@ -1,0 +1,29 @@
+Environment Setup:
+1. Download Code from Github 
+	https://github.com/sameerkumaragrawal/PortFolio
+
+2. Install mysql server
+	- Windows: https://dev.mysql.com/downloads/installer/
+	 and follow the installer
+	- Ubuntu: sudo apt-get install mysql-server
+	
+3. Import the mysql dump file using
+	mysql < sqlData.sql
+	(Note: if mysql command not working add mysql bin directory to the path variable)
+
+4. Download Tomcat 7.0
+	- Windows: "https://tomcat.apache.org/download-70.cgi"	under Core Section
+	and Extract it Somewhere say "ApacheFolder"
+	- Ubuntu: sudo apt-get install tomcat7
+	
+5. Run Eclipse
+	- Import existing project
+	- Import WebApplication
+	- Build Project
+	- Then Run as run on Server (Select your Tomcat 7 installation)
+	
+
+
+Also in the database, there exists 1 user with some transactions
+email: sameer@xyz.com
+password: 1234	
