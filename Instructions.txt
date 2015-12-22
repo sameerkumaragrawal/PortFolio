@@ -29,4 +29,4 @@ Environment Setup:
 
 Also in the database, there exists 1 user with some transactions
 email: sameer@xyz.com
-password: 1234	
+password: 1234
