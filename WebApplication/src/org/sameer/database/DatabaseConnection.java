@@ -112,7 +112,7 @@ public class DatabaseConnection {
     }
     
     //insert into investment
-    public synchronized int makeInvestment(int user_id, PortFolio pf){
+    public int makeInvestment(int user_id, PortFolio pf){
     	int invest_id = 0;
     	try{
 			PreparedStatement prepStmt = con.prepareStatement("insert into investment (user_id) values (?)", Statement.RETURN_GENERATED_KEYS);
@@ -131,7 +131,7 @@ public class DatabaseConnection {
     }
     
     //insert into transactions
-    public synchronized void insertTransaction( PortFolio pf){
+    public void insertTransaction( PortFolio pf){
     	Timestamp tstamp = new Timestamp(new Date().getTime());
     	try{
 			PreparedStatement prepStmt = con.prepareStatement("insert into transactions (investment_id, portfolio, timestamp) values (?,?,?)");

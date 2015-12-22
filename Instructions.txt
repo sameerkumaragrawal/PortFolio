@@ -21,6 +21,7 @@ Environment Setup:
 	- Import WebApplication
 	- Build Project
 	- Then Run as run on Server (Select your Tomcat 7 installation)
+	- or deploy the .war file on Tomcat
 	
 
 
