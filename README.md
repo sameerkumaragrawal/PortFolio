@@ -1,5 +1,5 @@
 # PortFolio
-Sample Web Application<br/>
+Sample Web Application: <a href="http://sameer-webportfolio234.rhcloud.com/WebApplication/">http://sameer-webportfolio234.rhcloud.com/WebApplication/</a><br/>
 
 <b>Future Improvements:</b><br/>
 1. Show historical transactions for each portfolio on UI (currently entries in database)<br/>
