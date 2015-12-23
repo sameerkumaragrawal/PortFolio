@@ -23,7 +23,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = -4485515350356166136L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = ServletSanity.verifySession(request, response);
+		HttpSession session = ServletSanity.verifyAccesiblePage(request, response);
 		if(session == null){
 			return;
 		}

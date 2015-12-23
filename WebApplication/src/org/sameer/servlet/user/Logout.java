@@ -19,7 +19,7 @@ public class Logout extends HttpServlet {
 	private static final long serialVersionUID = -2499712469921382276L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = ServletSanity.verifySession(request, response);
+		HttpSession session = ServletSanity.verifyAccesiblePage(request, response);
 		if(session == null){
 			return;
 		}

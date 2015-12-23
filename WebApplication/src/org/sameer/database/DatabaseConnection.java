@@ -21,8 +21,13 @@ public class DatabaseConnection {
     private static DatabaseConnection db = null;
 	private Connection con = null;
     private static final String DB_USERNAME = "sameer";
+    //private static final String DB_PASSWORD = "webapp72";
     private static final String DB_PASSWORD = "123456";
-    private static final String URL = "jdbc:mysql://localhost/webApp";
+    //private final static String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+    //private final static String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+    private final static String host = "localhost";
+    private final static String port = "3306";
+    private static final String URL = "jdbc:mysql://"+host+":"+port+"/webapp";
     /*
     private String CATEGORY = null;
     private String SORT_BY_1 = "popularity";
@@ -33,7 +38,11 @@ public class DatabaseConnection {
     //**************************************************************************
     //Constructor which initializes the connection
     private DatabaseConnection() {
-        try {
+        
+    }
+    
+    private void pingConnection(){
+    	try {
             if (con == null) {
                 Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection(URL, DB_USERNAME, DB_PASSWORD);
@@ -49,6 +58,7 @@ public class DatabaseConnection {
     	if(db == null){
     		db = new DatabaseConnection();
     	}
+    	db.pingConnection();
     	return db;
     }
     
