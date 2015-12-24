@@ -192,30 +192,64 @@ public class DatabaseConnection {
     	}
     }
     
-    /*
-    public PortFolio getTopStrategies(){
+    //return top strategy ids
+    public List<Integer> getTopStrategies(){
     	try{
 	    	PreparedStatement prepStmt = con.prepareStatement("select t1.portfolio from transactions t1 "
-	    			+ "join (select investement_id, MAX(timestamp) as timestamp group by investment_id) t2"
+	    			+ "join (select investment_id, MAX(timestamp) as timestamp from transactions group by investment_id) t2"
 	    			+ " on (t1.investment_id = t2.investment_id) and (t1.timestamp = t2.timestamp)");
 	        ResultSet rs = prepStmt.executeQuery();
-	        PortFolio pf = null;
+	        
 	        int[] recommend = new int[Constants.NUM_STRATEGIES];
 	        for(int i =0;i<Constants.NUM_STRATEGIES;i++){
 	        	recommend[i] = 0;
 	        }
 			while(rs.next()){
-				pf = PortFolio.fromString(rs.getString(1));
+				PortFolio pf = PortFolio.fromString(rs.getString(1));
 				List<Strategy> sL = pf.getStrategies();
 				for(Strategy s: sL){
 					recommend[s.getId()]++;
 				}
 			}
-			return pf;
+			
+			List<Integer> s = new ArrayList<>();
+			for(int j =0;j<Constants.NUM_RECOMMEND_STRATEGY;j++){
+				int maxIndex = getMaxIndex(recommend, s);
+				if(maxIndex < 0)
+					break;
+				s.add(maxIndex);
+			}
+			
+			return s;
     	}catch(Exception e){
     		e.printStackTrace();
     		return null;
     	}
     }
-    */
+    
+    private boolean inArray(int num, List<Integer> flag){
+    	if(flag.size() == 0)
+    		return false;
+    	for(int i: flag){
+    		if(num == i){
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    //get max value avoiding the indexes in flag array
+    private int getMaxIndex(int[] values, List<Integer> flag){
+		int max = -2;
+		int index = -1;
+    	for(int i = 0;i<values.length;i++){
+			if(!inArray(i, flag)){
+				if(values[i] > max){
+					max = values[i];
+					index = i;
+				}
+			}
+		}
+    	return index;
+    }
 }
