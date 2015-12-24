@@ -52,10 +52,9 @@ public class PortFolio {
 		return obj;
 	}
 	
-	public static PortFolio fromString(int id, String obj){
+	public static PortFolio fromString(String obj){
 		try{
 			PortFolio pf = new PortFolio();
-			pf.setId(id);
 			JSONObject json = new JSONObject(obj);
 			JSONArray arr = json.getJSONArray(PORTFOLIO);
 			for(int i=0;i<arr.length();i++){

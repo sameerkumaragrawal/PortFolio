@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.sameer.java.Constants;
 import org.sameer.java.PortFolio;
+import org.sameer.java.Strategy;
 import org.sameer.java.User;
 
 public class DatabaseConnection {
@@ -43,7 +45,7 @@ public class DatabaseConnection {
     
     private void pingConnection(){
     	try {
-            if (con == null) {
+    		if (con == null || !con.isValid(0)) {
                 Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection(URL, DB_USERNAME, DB_PASSWORD);
             }
@@ -179,7 +181,8 @@ public class DatabaseConnection {
 	        ResultSet rs = prepStmt.executeQuery();
 	        PortFolio pf = null;
 			while(rs.next()){
-				pf = PortFolio.fromString(invest_id, rs.getString(1));
+				pf = PortFolio.fromString(rs.getString(1));
+				pf.setId(invest_id);
 				pf.setTimestamp(rs.getTimestamp(2));
 			}
 	        return pf;
@@ -188,4 +191,31 @@ public class DatabaseConnection {
     		return null;
     	}
     }
+    
+    /*
+    public PortFolio getTopStrategies(){
+    	try{
+	    	PreparedStatement prepStmt = con.prepareStatement("select t1.portfolio from transactions t1 "
+	    			+ "join (select investement_id, MAX(timestamp) as timestamp group by investment_id) t2"
+	    			+ " on (t1.investment_id = t2.investment_id) and (t1.timestamp = t2.timestamp)");
+	        ResultSet rs = prepStmt.executeQuery();
+	        PortFolio pf = null;
+	        int[] recommend = new int[Constants.NUM_STRATEGIES];
+	        for(int i =0;i<Constants.NUM_STRATEGIES;i++){
+	        	recommend[i] = 0;
+	        }
+			while(rs.next()){
+				pf = PortFolio.fromString(rs.getString(1));
+				List<Strategy> sL = pf.getStrategies();
+				for(Strategy s: sL){
+					recommend[s.getId()]++;
+				}
+			}
+			return pf;
+    	}catch(Exception e){
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
+    */
 }
