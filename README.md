@@ -6,6 +6,7 @@ Sample Web Application: <a href="http://sameer-webportfolio234.rhcloud.com/WebAp
 2. Improve UI (add css) <br/>
 3. Add portfolio names <br/>
 4. Get Strategies data from database (name etc) <br/>
+5. Get Database Connection from connection pool <br/>
 
 <b>Features:</b><br/>
 1. Login Page <br/>
